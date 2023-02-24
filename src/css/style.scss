@@ -154,6 +154,11 @@ body {
         display: block;
         visibility: visible;
     }
+
+    &__menu_hidden_{
+        display: none;
+        visibility: hidden;
+    }
 }
 
 .logo {
@@ -215,7 +220,7 @@ body {
         font-size: 64px;
         line-height: 72px;
         letter-spacing: -0.8px;
-        margin-bottom: 45px;
+        margin-bottom: 35px;
     }
 
 
@@ -283,7 +288,7 @@ body {
         line-height: 24px;
         border: 1px solid #FFFFFF;
         border-radius: 60px;
-        padding: 6px 20px;
+        // padding: 6px 20px;
 
         &:not(:last-child) {
             margin-right: 10px;
