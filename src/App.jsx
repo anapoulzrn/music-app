@@ -7,29 +7,32 @@ import Volume from './components/volume';
 import Main_sidebar from './components/main_sidebar';
 import { SkeletonTheme } from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
+// eslint-disable-next-line no-undef
+let classNames = require('classnames');
+import styles from "./css/app.module.css";
 
 
 function App() {
 
   return (
-    <div className="App container">
+    <div className={classNames(styles.app, styles.container)}>
       <SkeletonTheme baseColor="#202020" highlightColor="#444">
-      <div className="main">
+      <div className={styles.main}>
         <Main_nav/>
         <Main_center/>
         <Main_sidebar/>
       </div>
-      <div className="bar">
-        <div className="bar__content">
-          <div className="bar__player-progress"></div>
-          <div className="bar__player-block">
+      <div className={styles.bar}>
+        <div className={styles.content}>
+          <div className={styles.player_progress}></div>
+          <div className={styles.player_block}>
             <Player artist={"Баста"} song={"Ты та..."}/>
             <Volume/>
           </div>
           
         </div>
       </div> 
-      <footer className="footer"></footer>
+      <footer className={styles.footer}></footer>
       </SkeletonTheme>
     </div>
   )
