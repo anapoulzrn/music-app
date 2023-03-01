@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 import Dislike from './img/icon/dislike.svg';
 import Like from './img/icon/like.svg';
 import Note from './img/icon/note.svg';
@@ -8,7 +10,17 @@ import Next from './img/icon/next.svg';
 import Repeat from './img/icon/repeat.svg';
 import Shuffle from './img/icon/shuffle.svg';
 
-const player = () => {
+const player = (props) => {
+
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+          setLoading(false);
+        }, 2500);
+        return () => clearTimeout(timer)
+    }, []);
+
   return (
     <div className="bar__player player">
         <div className="player__controls">
@@ -37,15 +49,20 @@ const player = () => {
 
         <div className="player__track-play track-play">
             <div className="track-play__contain">
+                {loading ? <Skeleton width={50} height={50} style={{marginRight: "15px"}} /> :
                 <div className="track-play__image">
                     <img className="track__title-svg" src={Note} alt="music"></img>
-                </div>
-                <div className="track-play__author">
-                    <a className="track-play__author-link" href="http://">Ты та...</a>
-                </div>
-                <div className="track-play__album">
-                    <a className="track-play__album-link" href="http://">Баста</a>
-                </div>
+                </div>}
+                {loading ? <Skeleton count={2} width={90} height={15} /> :  
+                    <div>
+                    <div className="track-play__author">
+                        <a className="track-play__author-link" href="http://">{props.song}</a>
+                    </div>
+                    <div className="track-play__album">
+                        <a className="track-play__album-link" href="http://">{props.artist}</a>
+                    </div>
+                    </div>
+                }
             </div>
 
             <div className="track-play__like-dis">
