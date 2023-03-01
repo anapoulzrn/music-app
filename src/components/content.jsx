@@ -3,6 +3,9 @@ import React from 'react';
 import 'react-loading-skeleton/dist/skeleton.css';
 import Playlist_item from './playlist_item';
 import Watch from './img/icon/watch.svg';
+// eslint-disable-next-line no-undef
+let classNames = require('classnames');
+import styles from "../css/content.module.css";
 
 
 const content = () => {
@@ -15,16 +18,16 @@ const content = () => {
   ];
 
   return (
-    <div className='centerblock__content'>
-        <div className="content__title playlist-title">
-            <div className="playlist-title__col col01">Трек</div>
-            <div className="playlist-title__col col02">ИСПОЛНИТЕЛЬ</div>
-            <div className="playlist-title__col col03">АЛЬБОМ</div>
-            <div className="playlist-title__col col04">
-                <img src={Watch} className="playlist-title__svg" alt="time"></img>
+    <div className={styles.content}>
+        <div className={classNames(styles.title, styles.playlist_title)}>
+            <div className={classNames(styles.title__col, styles.col01)}>Трек</div>
+            <div className={classNames(styles.title__col, styles.col02)}>ИСПОЛНИТЕЛЬ</div>
+            <div className={classNames(styles.title__col, styles.col03)}>АЛЬБОМ</div>
+            <div className={classNames(styles.title__col, styles.col04)}>
+                <img src={Watch} className={styles.title__svg} alt="time"></img>
             </div>
         </div>
-        <div className="content__playlist playlist">
+        <div className={classNames(styles.content__playlist, styles.playlist)}>
           {tracks.map(track => <Playlist_item track={track} key={track.id}/>)}
         </div>
     </div>

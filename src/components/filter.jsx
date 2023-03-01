@@ -1,35 +1,29 @@
 import React from 'react';
 import { useState } from 'react';
+import styles from '../css/filter.module.css';
+// eslint-disable-next-line no-undef
+let classNames = require('classnames');
 
 const filter = (props) => {
-    const [filterClass, setFilterClass] = useState('filter__hidden');
+    const [filterClass, setFilterClass] = useState(`${styles.filter__hidden}`);
     const [filterVisibility, setFilterVisibility] = useState(false);
 
-    let filterButton = document.querySelector('.filter__open');
 
-    function clearFilter() {
-        if (filterButton) {
-            filterButton.classList.remove('filter__open');
-            filterButton.classList.add('filter__hidden');
-        }
-    }
-
-    clearFilter();
 
     function updateFilter() {
         if (!filterVisibility) {
-            setFilterClass('filter__open');
+            setFilterClass(`${styles.filter__open}`);
         } else {
-            setFilterClass('filter__hidden');
+            setFilterClass(`${styles.filter__hidden}`);
         }
-        setFilterVisibility(!filterVisibility);
+        setFilterVisibility((prev) => !prev);
     }
 
     return (
-        <div onClick={updateFilter} className="filter__button button-author _btn-text">
+        <div onClick={updateFilter} className={classNames(styles.button, styles.button_author, styles.btn_text)}>
             {props.filterBlock.parameter}
             <div className={filterClass}>
-                <ul className="filter__scroll_items">
+                <ul className={styles.scroll_items}>
                     <li>Linkin Park</li>
                     <li>Arctic Monkeys</li>
                     <li>Stray Kids</li>

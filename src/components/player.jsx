@@ -9,6 +9,9 @@ import Play from './img/icon/play.svg';
 import Next from './img/icon/next.svg';
 import Repeat from './img/icon/repeat.svg';
 import Shuffle from './img/icon/shuffle.svg';
+// eslint-disable-next-line no-undef
+let classNames = require('classnames');
+import styles from "../css/player.module.css";
 
 const player = (props) => {
 
@@ -22,55 +25,55 @@ const player = (props) => {
     }, []);
 
   return (
-    <div className="bar__player player">
-        <div className="player__controls">
-            <div className="player__btn-prev">
-                <img src={Prev} className="player__btn-prev-svg" alt="prev">
+    <div className={classNames(styles.bar__player, styles.player)}>
+        <div className={styles.controls}>
+            <div className={styles.btn_prev}>
+                <img src={Prev} className={styles.prev_svg} alt="prev">
                 </img>
             </div>
-            <div className="player__btn-play _btn">
-                <img src={Play} className="player__btn-play-svg" alt="play">
+            <div className={classNames(styles.btn_play, styles.btn)}>
+                <img src={Play} className={styles.play_svg} alt="play">
                 </img>
             </div>
-            <div className="player__btn-next">
-                <img src={Next} className="player__btn-next-svg" alt="next">
+            <div className={styles.btn_next}>
+                <img src={Next} className={styles.next_svg} alt="next">
                 </img>
             </div>
-            <div className="player__btn-repeat _btn-icon">
-                <img src={Repeat} className="player__btn-repeat-svg" alt="repeat">
+            <div className={classNames(styles.btn_repeat, styles.btn_icon)}>
+                <img src={Repeat} className={styles.repeat_svg} alt="repeat">
                 </img>
             </div>
-            <div className="player__btn-shuffle _btn-icon">
-                <img src={Shuffle} className="player__btn-shuffle-svg" alt="shuffle">
+            <div className={classNames(styles.btn_shuffle, styles.btn_icon)}>
+                <img src={Shuffle} className={styles.shuffle_svg} alt="shuffle">
                 </img>
             </div>
             
         </div>
 
-        <div className="player__track-play track-play">
-            <div className="track-play__contain">
+        <div className={styles.track_play}>
+            <div className={styles.contain}>
                 {loading ? <Skeleton width={50} height={50} style={{marginRight: "15px"}} /> :
-                <div className="track-play__image">
-                    <img className="track__title-svg" src={Note} alt="music"></img>
+                <div className={styles.image}>
+                    <img className={styles.title_svg} src={Note} alt="music"></img>
                 </div>}
                 {loading ? <Skeleton count={2} width={90} height={15} /> :  
                     <div>
-                    <div className="track-play__author">
-                        <a className="track-play__author-link" href="http://">{props.song}</a>
+                    <div className={styles.author}>
+                        <a className={styles.author_link} href="http://">{props.song}</a>
                     </div>
-                    <div className="track-play__album">
-                        <a className="track-play__album-link" href="http://">{props.artist}</a>
+                    <div className={styles.album}>
+                        <a className={styles.album_link} href="http://">{props.artist}</a>
                     </div>
                     </div>
                 }
             </div>
 
-            <div className="track-play__like-dis">
-                <div className="track-play__like _btn-icon">
-                    <img className="track-play__dislike-svg" src={Like} alt="like"></img>
+            <div className={styles.like_dis}>
+                <div className={classNames(styles.like, styles.btn_icon)}>
+                    <img className={styles.dislike_svg} src={Like} alt="like"></img>
                 </div>
-                <div className="track-play__dislike _btn-icon">
-                    <img className="track-play__dislike-svg" src={Dislike} alt="dislike"></img>
+                <div className={classNames(styles.dislike, styles.btn_icon)}>
+                    <img className={styles.dislike_svg} src={Dislike} alt="dislike"></img>
                 </div>
             </div>
         </div>

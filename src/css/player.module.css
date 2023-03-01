@@ -1,0 +1,237 @@
+.controls {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    padding: 0 27px 0 31px;
+  }
+  
+  .btn_prev, .btn_play, .btn_next, .btn_repeat, .btn_shuffle {
+    padding: 5px;
+    display: -webkit-box;
+    cursor: pointer;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  
+  .btn_prev {
+    margin-right: 23px;
+  }
+  
+  .prev_svg {
+    width: 15px;
+    height: 14px;
+  }
+  
+  .btn_play {
+    margin-right: 23px;
+  }
+  
+  .play_svg {
+    width: 22px;
+    height: 20px;
+    fill: #D9D9D9;
+  }
+  
+  .btn_next {
+    margin-right: 28px;
+    fill: #a53939;
+  }
+  
+  .next_svg {
+    width: 15px;
+    height: 14px;
+    fill: inherit;
+    stroke: #D9D9D9;
+  }
+  
+  .btn_repeat {
+    margin-right: 24px;
+  }
+  
+  .repeat_svg {
+    width: 18px;
+    height: 12px;
+    fill: transparent;
+    stroke: #696969;
+  }
+  
+  .btn_shuffle {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  
+  .shuffle_svg {
+    width: 19px;
+    height: 12px;
+    fill: transparent;
+    stroke: #696969;
+  }
+  
+  .track_play {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+  }
+
+  .contain {
+    width: auto;
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: auto 1fr;
+        grid-template-columns: auto 1fr;
+        grid-template-areas: "image author" "image album";
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  
+  .image {
+    width: 51px;
+    height: 51px;
+    background-color: #313131;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    margin-right: 12px;
+    grid-row: 1;
+    grid-column: 1;
+    grid-area: image;
+  }
+  
+  .play__svg {
+    width: 18px;
+    height: 17px;
+    fill: transparent;
+    stroke: #4E4E4E;
+  }
+  
+  .author {
+    grid-row: 1;
+    grid-column: 2;
+    grid-area: author;
+    min-width: 49px;
+  }
+  
+  .author_link {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #FFFFFF;
+    white-space: nowrap;
+  }
+  
+  .album {
+    grid-row: 2;
+    grid-column: 2;
+    grid-area: album;
+    min-width: 49px;
+  }
+  
+  .album_link {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 24px;
+    color: #FFFFFF;
+  }
+  
+  .like_dis {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    margin-left: 26%;
+  }
+  
+  .like, .dislike {
+    padding: 5px;
+  }
+  
+  .like_svg {
+    width: 14px;
+    height: 12px;
+    fill: transparent;
+    stroke: #696969;
+  }
+  
+  .dislike {
+    margin-left: 28.5px;
+  }  
+  
+  .bar__player {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+  }  
+
+
+
+
+  .btn_text:hover {
+    border-color: #D9B6FF;
+    color: #D9B6FF;
+    cursor: pointer;
+  }
+  
+  .btn_icon:hover{
+    fill: transparent;
+    stroke: #ACACAC;
+    cursor: pointer;
+  }
+  
+  .btn_text:active {
+    border-color: #AD61FF;
+    color: #AD61FF;
+    cursor: pointer;
+  }
+  
+  .btn_icon:active {
+    fill: transparent;
+    stroke: #FFFFFF;
+    cursor: pointer;
+  }
+  
+  .btn_icon:active .like_svg,
+  .btn_icon:active .dislike_svg {
+    fill: #696969;
+    stroke: #FFFFFF;
+    cursor: pointer;
+  }  
