@@ -20,7 +20,7 @@ const player = (props) => {
     useEffect(() => {
         const timer = setTimeout(() => {
           setLoading(false);
-        }, 2500);
+        }, 2000);
         return () => clearTimeout(timer)
     }, []);
 

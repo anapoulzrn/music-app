@@ -1,10 +1,30 @@
-import React, {useState} from 'react';
+import React, {  useContext, useState } from 'react';
 import Logo from './img/logo.png';
-// eslint-disable-next-line no-undef
-let classNames = require('classnames');
+import classNames from 'classnames';
 import styles from "../css/main_nav.module.css";
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../context';
+
 
 const main_nav = () => {
+
+    const { setAuth } = useContext(AuthContext);
+    const logOut = (event) => {
+        event.preventDefault();
+        setAuth(false);
+        localStorage.removeItem('auth');
+    }
+  
+
+    const navigate = useNavigate();
+
+    const goToPlaylist = () => {
+        navigate('/playlist/my_library', {replace: true})
+    }
+
+    const goToMain = () => {
+        navigate('/main', {replace: true})
+    }
 
     const [burgerClass, setBurgerClass] = useState(`${styles.menu_hidden}`);
     const [burgerVisibility, setBurgerVisibility] = useState(false);
@@ -22,7 +42,7 @@ const main_nav = () => {
   return (
     <nav className={classNames(styles.main__nav, styles.nav)}>
         <div className={styles.logo}>
-            <img className={styles.image} src={Logo} alt="logo"></img>
+            <img onClick={goToMain} className={styles.image} src={Logo} alt="logo"></img>
         </div>
 
         <button onClick={updateBurger} className={styles.burger}>
@@ -33,9 +53,9 @@ const main_nav = () => {
         <div className={burgerClass}>
 
             <ul className={styles.list}>
-                <li className={styles.item}><a href="http://" className={styles.link}>Главное</a></li>
-                <li className={styles.item}><a href="http://" className={styles.link}>Мой плейлист</a></li>
-                <li className={styles.item}><a href="http://" className={styles.link}>Войти</a></li>
+                <li className={styles.item}><div onClick={goToMain} className={styles.link}>Главная</div></li>
+                <li className={styles.item}><div onClick={goToPlaylist} className={styles.link}>Мой плейлист</div></li>
+                <li className={styles.item}><div onClick={logOut} className={styles.link}>Выйти</div></li>
             </ul>
         </div>
         
