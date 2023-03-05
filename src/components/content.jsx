@@ -3,8 +3,7 @@ import React from 'react';
 import 'react-loading-skeleton/dist/skeleton.css';
 import Playlist_item from './playlist_item';
 import Watch from './img/icon/watch.svg';
-// eslint-disable-next-line no-undef
-let classNames = require('classnames');
+import classNames from 'classnames';
 import styles from "../css/content.module.css";
 
 

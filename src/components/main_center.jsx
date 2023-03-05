@@ -4,8 +4,7 @@ import Content from './content';
 import Search from './img/icon/search.svg';
 // import Filter from './filter';
 import styles from "../css/main_center.module.css";
-// eslint-disable-next-line no-undef
-let classNames = require('classnames');
+import classNames from 'classnames';
 
 
 

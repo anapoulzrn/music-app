@@ -1,0 +1,90 @@
+.container {
+    display: flex;
+    margin-top: 140px;
+    justify-content: center;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 366px;
+    height: 439px;
+    background-color: #fff;
+    border-radius: 12px;
+    border: none;
+    outline: none;
+}
+
+.image {
+    width: 120px;
+    margin-top: 43px;
+    margin-bottom: 40px;
+}
+
+.inputs {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 60px;
+}
+
+.input {
+    width: 278px;
+    height: 52px;
+    border: none ;
+    border-bottom: 1px solid #D0CECE;
+    outline: none;
+
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 47px;
+    gap: 20px;
+}
+
+.button1 {
+    background-color: #580EA2;
+    width: 278px;
+    height: 52px;
+    border-radius: 6px;
+    border: none;
+    color: #fff;
+    font-family: 'StratosSkyeng';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+}
+
+.button1:hover {
+    background-color: #3F007D;
+}
+
+.button1:active {
+    background-color: #271A58;
+}
+
+.button2 {
+    background-color: #fff;
+    width: 278px;
+    height: 52px;
+    border-radius: 6px;
+    border: 1px solid #D0CECE;
+    color: #000;
+    font-family: 'StratosSkyeng';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+}
+
+.button2:hover {
+    background-color: #F4F5F6;
+}
+
+.button2:active {
+    background-color: #D0CECE;
+}
+
