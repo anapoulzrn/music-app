@@ -42,7 +42,7 @@ const playlist = () => {
             <div className={styles.content}>
                 <div className={styles.player_progress}></div>
                 <div className={styles.player_block}>
-                    <Player artist={"Баста"} song={"Ты та..."}/>
+                    <Player artist={"Linkin Park"} song={"Breaking The Habit"}/>
                     <Volume/>
                 </div>  
             </div>
