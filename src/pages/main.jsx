@@ -13,6 +13,8 @@ import styles from "../css/app.module.css";
 
 
 const main = () => {
+
+
   return (
     <div className={classNames(styles.app, styles.container)}>
       <SkeletonTheme baseColor="#202020" highlightColor="#444">
@@ -23,9 +25,8 @@ const main = () => {
       </div>
       <div className={styles.bar}>
         <div className={styles.content}>
-          <div className={styles.player_progress}></div>
           <div className={styles.player_block}>
-            <Player artist={"Баста"} song={"Ты та..."}/>
+            <Player artist="Linkin Park" song="Breaking The Habit" />
             <Volume/>
           </div>
           

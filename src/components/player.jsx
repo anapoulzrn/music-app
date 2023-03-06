@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import Dislike from './img/icon/dislike.svg';
@@ -6,12 +6,16 @@ import Like from './img/icon/like.svg';
 import Note from './img/icon/note.svg';
 import Prev from './img/icon/prev.svg';
 import Play from './img/icon/play.svg';
+import Pause from './img/icon/pause.png';
 import Next from './img/icon/next.svg';
 import Repeat from './img/icon/repeat.svg';
 import Shuffle from './img/icon/shuffle.svg';
-// eslint-disable-next-line no-undef
-let classNames = require('classnames');
+import classNames from 'classnames';
 import styles from "../css/player.module.css";
+import track from '../music/Breaking_the_Habit.mp3';
+
+
+
 
 const player = (props) => {
 
@@ -24,15 +28,50 @@ const player = (props) => {
         return () => clearTimeout(timer)
     }, []);
 
+
+    const [isPlaying, setPlaying] = useState(false);
+
+    const audioRef = useRef();
+
+    const playSong = () => {
+        audioRef.current.play();
+        setPlaying(true);
+    }
+
+    const stopSong = () => {
+        audioRef.current.pause();
+        setPlaying(false);
+    }
+
+    const togglePlay = () => { 
+        if(isPlaying) {
+            stopSong();
+        } else {
+            playSong();
+        };
+    }    
+
+    const [currentSong, setCurrentSong] = useState(track);
+
+    const onPlaying = () => {
+        const duration = audioRef.current.duration;
+        const currentTime = audioRef.current.currentTime;
+        setCurrentSong({'progress': currentTime / duration * 100, 'length': duration});
+    }
+
+
   return (
     <div className={classNames(styles.bar__player, styles.player)}>
+        <div className={styles.progress_back}></div>
+        <div className={styles.player_progress} style={{width: `${currentSong.progress +'%'}`}}></div>
         <div className={styles.controls}>
             <div className={styles.btn_prev}>
                 <img src={Prev} className={styles.prev_svg} alt="prev">
                 </img>
             </div>
-            <div className={classNames(styles.btn_play, styles.btn)}>
-                <img src={Play} className={styles.play_svg} alt="play">
+            <div onClick={togglePlay} className={classNames(styles.btn_play, styles.btn)}>
+                <audio src={track} ref={audioRef} onTimeUpdate={onPlaying}/>
+                <img src={isPlaying ? Pause : Play} className={styles.play__svg} alt="play">
                 </img>
             </div>
             <div className={styles.btn_next}>
