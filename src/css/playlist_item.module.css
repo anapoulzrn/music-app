@@ -38,7 +38,7 @@
     width: 51px;
     height: 51px;
     padding: 16px;
-    background: #313131;
+    background: var(--song-icon-default);
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -63,7 +63,7 @@
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
-    color: #FFFFFF;
+    color: var(--text-default);
   }
   
   .title_span {
@@ -89,7 +89,7 @@
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
-    color: #FFFFFF;
+    color: var(--text-default);
     text-align: left;
   }
   
@@ -135,4 +135,3 @@
     stroke: #696969;
   }
   
-    

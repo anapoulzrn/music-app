@@ -9,7 +9,7 @@
   .center__search {
     /* width: 100%; */
     width: 1002px;
-    border-bottom: 1px solid #4E4E4E;
+    border-bottom: 1px solid var(--player-progress-bg-default);
     margin-bottom: 51px;
     padding-top: 18px;
     display: -webkit-box;
@@ -31,6 +31,7 @@
     line-height: 72px;
     letter-spacing: -0.8px;
     margin-bottom: 35px;
+    color: var(--text-default);
   }
   
   .center__filter {
@@ -62,12 +63,13 @@
             flex-grow: 100;
     background-color: transparent;
     border: none;
+    outline: none;
     padding: 13px 10px 14px;
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
-    color: #FFFFFF;
+    color: var(--text-default);
   }
   
   .search__text::-webkit-input-placeholder {
@@ -99,7 +101,7 @@
   
   .search__text::placeholder {
     background-color: transparent;
-    color: #FFFFFF;
+    color: var(--text-default);
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
@@ -112,6 +114,7 @@
     font-size: 16px;
     line-height: 24px;
     margin-right: 15px;
+    color: var(--text-default)
   }
 
 
@@ -120,7 +123,7 @@
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
-    border: 1px solid #FFFFFF;
+    border: 1px solid var(--text-default);
     border-radius: 60px;
     text-align: center;
     width: 144px;
@@ -152,13 +155,13 @@
 
 .scroll_items::-webkit-scrollbar-thumb {
   border-radius: 10px;
-  background-color: #FFF;
+  background-color: var(--text-default);
 }
 
 .scroll_items::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.2);
   border-radius: 10px;
-  background-color: #4B4949;
+  background-color: var(--player-progress-bg-default);
 }
 
 
@@ -170,7 +173,8 @@
   padding: 18px 30px;
   gap: 22px;
   display: flex;
-  background: #313131;
+  background: var(--bar-bg-default);
+  color: var(--text-default);
   flex-direction: column;
   margin-top: 20px;
   position: relative;
@@ -184,6 +188,9 @@
   visibility: hidden;
 }
 
+.btn_text {
+  color: var(--text-default);
+}
 .btn_text:hover {
   border-color: #D9B6FF;
   color: #D9B6FF;
@@ -196,3 +203,91 @@
   color: #AD61FF;
   cursor: pointer;
 }
+
+.year_block {
+  width: 350px;
+  background: var(--bar-bg-default);
+  border-radius: 12px;
+  color: var(--text-default);
+  padding-top: 18px;
+  height: 62px;
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+  margin-top: 20px;
+  position: relative;
+  left: -20px;
+  text-align: left;
+
+}
+.year {
+  min-width: 121px;
+  height: 22px;
+}
+
+.input_year1 {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  visibility: hidden;
+  /* visibility: visible; */
+  top: -5px;
+  left: 30px;
+
+}
+
+.input_year2 {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  visibility: hidden;
+  /* visibility: visible; */
+
+  top: -5px;
+  left: 30px;
+}
+.radio_label {
+  cursor: pointer;
+  position: relative;
+  display: inline-block; 
+  width: 20px;
+  height: 20px;
+  background: var(--bar-bg-default);
+  border: 2px solid var(--text-default);
+  border-radius: 50%; 
+  vertical-align: text-top;
+
+}
+.radio_label:before {
+    content: '';
+    background: var(--text-default);
+    border-radius: 100%;
+    display: inline-block;
+    width: 10.8px;
+    height: 10.8px;
+    position: relative;
+    right: -3px;
+    top: 3px;
+    vertical-align: top;
+    cursor: pointer;
+  }
+
+  .radio_label:checked {
+    content: '';
+    background: var(--text-default);
+    border-radius: 100%;
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    position: relative;
+    right: -3px;
+    top: 3px;
+    vertical-align: top;
+    cursor: pointer;
+  }
+
+  .radio_label_text {
+    color: var(--text-default);
+    cursor: pointer;
+  }
+

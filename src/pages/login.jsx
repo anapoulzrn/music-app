@@ -3,13 +3,13 @@ import '../css/style.css';
 import styles from '../css/login.module.css';
 import Logo from '../components/img/logo_black.png';
 import { Link } from 'react-router-dom';
-import { AuthContext } from '../context';
+import { AuthContext } from '../context/authContext';
 
 
 
 const login = () => {
 
-  const { auth, setAuth } = useContext(AuthContext);  // eslint-disable-line no-unused-vars
+  const { setAuth } = useContext(AuthContext);
   const login = (event) => {
     event.preventDefault();
     setAuth(true);

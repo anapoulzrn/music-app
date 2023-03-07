@@ -5,6 +5,34 @@
           box-sizing: border-box;
 }
 
+
+
+
+:root {
+  --body-bg-dark: #181818;
+  --body-bg-light: #fff;
+  --body-bg-default: #181818;
+
+  --bar-bg-dark: #1C1C1C;
+  --bar-bg-light: #F6F5F3;
+  --bar-bg-default: #1C1C1C;
+
+  --song-icon-dark: #313131;
+  --song-icon-light: #F6F4F4;
+  --song-icon-default: #313131;
+
+  --text-light: #000;
+  --text-dark: #fff;
+  --text-default: #fff;
+
+
+
+  --player-progress-bg-dark: #2E2E2E;
+  --player-progress-bg-light: #D9D9D9;
+  --player-progress-bg-default: #2E2E2E;
+}
+
+
 *:before,
 *:after {
   -webkit-box-sizing: border-box;

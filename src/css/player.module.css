@@ -103,7 +103,7 @@
   .image {
     width: 51px;
     height: 51px;
-    background-color: #313131;
+    background-color: var(--song-icon-default);
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -139,7 +139,7 @@
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
-    color: #FFFFFF;
+    color: var(--text-default);
     white-space: nowrap;
   }
   
@@ -155,7 +155,7 @@
     font-weight: 400;
     font-size: 13px;
     line-height: 24px;
-    color: #FFFFFF;
+    color: var(--text-default);
   }
   
   .like_dis {
@@ -214,7 +214,7 @@
   .progress_back {
     width: 100%;
     height: 5px;
-    background: #313131;
+    background: var(--player-progress-bg-default);
     position: absolute;
     bottom: 72px;
     cursor: pointer;

@@ -3,7 +3,7 @@
     height: 100vh;
     margin: 0 auto;
     position: relative;
-    background-color: #181818;
+    background-color: var(--body-bg-default);
   }
   .main {
     -webkit-box-flex: 1;
@@ -24,7 +24,7 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    background: rgba(28, 28, 28, 0.5);
+    background: var(--bar-bg-default);
   }
   
   .content {
@@ -40,7 +40,7 @@
   .player_progress {
     width: 100%;
     height: 5px;
-    background: #2E2E2E;
+    background: var(--player-progress-bg-default);
   }
   
   .player_block {
@@ -72,6 +72,7 @@
     line-height: 72px;
     letter-spacing: -0.8px;
     margin-bottom: 35px;
+    color: var(--text-default);
   }
 
   .search__svg {
@@ -93,12 +94,15 @@
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
-    color: #FFFFFF;
+    color: var(--text-default);
+    outline: none;
+    color: var(--text-default);
+
   }
   
   .search__text::-webkit-input-placeholder {
     background-color: transparent;
-    color: #FFFFFF;
+    color: var(--text-default);
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
@@ -125,19 +129,24 @@
   
   .search__text::placeholder {
     background-color: transparent;
+    outline: none;
     color: #FFFFFF;
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
+    color: var(--text-default);
+
   }
 
   .center__search {
     width: 1002px;
-    border-bottom: 1px solid #4E4E4E;
+    outline: none;
+    border-bottom: 1px solid var(--player-progress-bg-default);
     margin-bottom: 51px;
     padding-top: 18px;
     display: flex;
     align-items: center;
+    
   }
     
