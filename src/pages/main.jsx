@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import '../css/style.css';
 import Main_nav from '../components/main_nav';
 import Main_center from '../components/main_center';
@@ -9,15 +9,18 @@ import { SkeletonTheme } from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import classNames from 'classnames';
 import styles from "../css/app.module.css";
+import { ThemeContext } from '../context/ThemeContext';
 
 
 
 const main = () => {
 
+  const theme = useContext(ThemeContext);
 
   return (
     <div className={classNames(styles.app, styles.container)}>
-      <SkeletonTheme baseColor="#202020" highlightColor="#444">
+      <SkeletonTheme baseColor={ theme.theme ==='light' ? '#D9D9D9' : '#202020'} 
+        highlightColor={ theme.theme === 'light' ? '#fff' : '#444'}>
       <div className={styles.main}>
         <Main_nav/>
         <Main_center/>

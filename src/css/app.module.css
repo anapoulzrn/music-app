@@ -3,7 +3,7 @@
     height: 100vh;
     margin: 0 auto;
     position: relative;
-    background-color: #181818;
+    background-color: var(--body-bg-default);
   }
   .main {
     -webkit-box-flex: 1;
@@ -24,7 +24,7 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    background: rgba(28, 28, 28, 0.5);
+    background: var(--body-bg-default);
   }
   
   .content {

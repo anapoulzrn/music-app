@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { AppRoutes } from './routes';
-import { AuthContext } from './context';
+import { AuthContext } from './context/authContext';
+import ThemeProvider from './provider/ThemeProvider';
 
 
 function App() {
-
-    const [ auth, setAuth ] = useState(false);
-    const [ loading, setLoading ] = useState(true);
+    const [auth, setAuth] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         if (localStorage.getItem('auth')) {
@@ -16,12 +16,16 @@ function App() {
     }, []);
 
     return (
-        <AuthContext.Provider value={{
-            auth,
-            setAuth,
-            loading
-        }}>
-            <AppRoutes />
+        <AuthContext.Provider
+            value={{
+                auth,
+                setAuth,
+                loading,
+            }}
+        > 
+                <ThemeProvider>
+                    <AppRoutes />
+                </ThemeProvider>
         </AuthContext.Provider>
     );
 }
