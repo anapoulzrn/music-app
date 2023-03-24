@@ -1,20 +1,39 @@
-import React from 'react';
-// import useEffect, { useState } from 'react';
+/* eslint-disable no-unused-vars */
+import React, { useEffect } from 'react';
 import 'react-loading-skeleton/dist/skeleton.css';
 import Playlist_item from './playlist_item';
 import Watch from './img/icon/watch.svg';
 import classNames from 'classnames';
 import styles from "../css/content.module.css";
+import { useGetAllTracksQuery } from '../redux/musicApi';
+import { useDispatch, useSelector } from 'react-redux';
+// import { useDispatch } from 'react-redux';
+import formatDuration from '../redux//utils/formatDuration';
+import { getTracksId } from '../redux/slices/playerSlice';
+import { filterByYear } from '../redux/slices/filterSlice';
+import { getAuthors, getGenres } from '../redux/slices/filterSlice';
 
 
 const content = () => {
-  const tracks = [
-    { id: "1", title: "Guilt", artist: "Nero", album: "Welcome Reality", duration: "4:44"},
-    { id: "2", title: "Elektro", artist: "Dynoro, Outwork, Mr. Gee", album: "Elektro", duration: "2:22"},
-    { id: "3", title: "I’m Fire", artist: "Ali Bakgor", album: "I’m Fire", duration: "2:22"},
-    { id: "4", title: "Non Stop", artist: "Стоункат, Psychopath", album: "Non Stop", duration: "4:12"},
-    { id: "5", title: "Run Run", artist: "Jaded, Will Clarke, AR/CO", album: "Run Run", duration: "2:54"},
-  ];
+
+  const dispatch = useDispatch();
+
+  const { data, isSuccess } = useGetAllTracksQuery('');
+
+  const filterValue = useSelector((state) => state.filter.filterYearValue)
+  const authorsValue = useSelector((state) => state.filter.filterAuthorsValue)
+
+  useEffect(() => {
+
+    if (isSuccess) {
+        data?.map((track) => dispatch(getTracksId(track.id)))
+        data?.map((track) => dispatch(getGenres(track.genre)))
+
+        data?.map((track) => dispatch(getAuthors(track.author)))
+        
+    }
+  }, [data]);
+
 
   return (
     <div className={styles.content}>
@@ -27,7 +46,27 @@ const content = () => {
             </div>
         </div>
         <div className={classNames(styles.content__playlist, styles.playlist)}>
-          {tracks.map(track => <Playlist_item track={track} key={track.id}/>)}
+          {data
+            // .filter(({ author }) =>
+            // authorsValue.length
+            //     ? authorsValue.includes(author)
+            //     : author
+            //    )          
+            // .sort((a, b) => filterByYear(a, b, filterValue))
+            ?.map(
+              ({id, name, author, album, track_file, duration_in_seconds}) => (
+                <Playlist_item
+                    key={id}
+                    id={id}
+                    trackTitleLink={track_file}
+                    trackName={name}
+                    trackAuthor={author}
+                    trackAlbum={album}
+                    trackDuration={formatDuration(duration_in_seconds)}
+                />
+              )
+            )}
+
         </div>
     </div>
   )

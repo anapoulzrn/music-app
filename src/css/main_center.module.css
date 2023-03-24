@@ -7,10 +7,9 @@
   }
 
   .center__search {
-    /* width: 100%; */
     width: 1002px;
     border-bottom: 1px solid var(--player-progress-bg-default);
-    margin-bottom: 51px;
+    margin-bottom: 26px;
     padding-top: 18px;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -30,7 +29,7 @@
     font-size: 64px;
     line-height: 72px;
     letter-spacing: -0.8px;
-    margin-bottom: 35px;
+    margin-bottom: 22px;
     color: var(--text-default);
   }
   
@@ -45,7 +44,7 @@
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
-    margin-bottom: 44px;
+    margin-bottom: 28px;
     width: 560px;
   }
 
@@ -211,7 +210,6 @@
   color: var(--text-default);
   padding-top: 18px;
   height: 62px;
-  display: flex;
   flex-direction: row;
   gap: 4px;
   margin-top: 20px;
@@ -225,69 +223,55 @@
   height: 22px;
 }
 
-.input_year1 {
-  position: relative;
-  width: 30px;
-  height: 30px;
-  visibility: hidden;
-  /* visibility: visible; */
-  top: -5px;
-  left: 30px;
 
+.input_year {
+  cursor: pointer;
+  position: relative;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%; 
+  vertical-align: text-top;
+  outline: none;
+  border: none;
+  top: -2px;
+  left: 30.8px;
+  visibility: hidden;
 }
 
-.input_year2 {
-  position: relative;
-  width: 30px;
-  height: 30px;
-  visibility: hidden;
-  /* visibility: visible; */
 
-  top: -5px;
-  left: 30px;
+.input_year:checked::after {
+  content: '';
+  background: var(--text-default);
+  border: 3px solid var(--bar-bg-default);
+  border-radius: 100%;
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  position: relative;
+  right: 20px;
+  top: 3px;
+  vertical-align: top;
+  cursor: pointer;
+  visibility: visible; 
 }
+
 .radio_label {
   cursor: pointer;
   position: relative;
   display: inline-block; 
-  width: 20px;
-  height: 20px;
+  width: 21px;
+  height: 21px;
+  top: -2px;
+  left: 29px;
   background: var(--bar-bg-default);
-  border: 2px solid var(--text-default);
+  border: 3px solid var(--text-default);
   border-radius: 50%; 
   vertical-align: text-top;
-
 }
-.radio_label:before {
-    content: '';
-    background: var(--text-default);
-    border-radius: 100%;
-    display: inline-block;
-    width: 10.8px;
-    height: 10.8px;
-    position: relative;
-    right: -3px;
-    top: 3px;
-    vertical-align: top;
-    cursor: pointer;
-  }
 
-  .radio_label:checked {
-    content: '';
-    background: var(--text-default);
-    border-radius: 100%;
-    display: inline-block;
-    width: 10px;
-    height: 10px;
-    position: relative;
-    right: -3px;
-    top: 3px;
-    vertical-align: top;
-    cursor: pointer;
-  }
-
-  .radio_label_text {
-    color: var(--text-default);
-    cursor: pointer;
-  }
+.radio_label_text {
+  color: var(--text-default);
+  cursor: pointer;
+  margin-left: 20px;
+}
 

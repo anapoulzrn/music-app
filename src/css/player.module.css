@@ -131,7 +131,7 @@
     grid-row: 1;
     grid-column: 2;
     grid-area: author;
-    min-width: 49px;
+    max-width: 300px;
   }
   
   .author_link {
@@ -147,7 +147,7 @@
     grid-row: 2;
     grid-column: 2;
     grid-area: album;
-    min-width: 49px;
+    max-width: 300px;
   }
   
   .album_link {
@@ -181,6 +181,15 @@
     height: 12px;
     fill: transparent;
     stroke: #696969;
+  }
+
+  .dislike_svg:hover {
+     fill: #696969;
+    stroke: #696969;
+  }
+
+  .dislike_svg_active {
+    fill: #696969;
   }
   
   .dislike {

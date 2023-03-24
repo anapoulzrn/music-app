@@ -3,8 +3,8 @@ import { AppRoutes } from './routes';
 import { AuthContext } from './context/authContext';
 import ThemeProvider from './provider/ThemeProvider';
 
-
 function App() {
+
     const [auth, setAuth] = useState(false);
     const [loading, setLoading] = useState(true);
 

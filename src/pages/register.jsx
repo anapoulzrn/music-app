@@ -1,16 +1,55 @@
-import React, { useContext } from 'react';
+/* eslint-disable no-unused-vars */
+import React, { useContext, useState } from 'react';
 import '../css/style.css';
 import styles from '../css/register.module.css';
 import Logo from '../components/img/logo_black.png';
-import { Link } from 'react-router-dom';
+import { useUserSignupMutation } from '../redux/musicApi';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/authContext';
+
 
 const register = () => {
     const { setAuth } = useContext(AuthContext);
-    const login = (event) => {
-        event.preventDefault();
-        setAuth(true);
-    };
+    const [ signup, { isSuccess, error }] = useUserSignupMutation();
+    const navigate = useNavigate();
+
+    const [userValues, setUserValues] = useState({
+        username: '',
+        email: '',
+        password: '',
+    })
+
+    const register = () => {
+        if (userValues.password !== '' && userValues.email !== '' && userValues.login !== '') {
+
+            signup(userValues);
+            navigate('/main', { replace: true });
+            setAuth(true);
+            localStorage('auth', 'true');
+        } 
+    }
+
+    const setLoginValue = (e) => {
+        setUserValues({
+            ...userValues,
+            username: e.target.value,
+        })
+    }
+
+    const setEmailValue = (e) => {
+        setUserValues({
+            ...userValues,
+            email: e.target.value,
+        })
+    }
+
+    const setPasswordValue = (e) => {
+        setUserValues({
+            ...userValues,
+            password: e.target.value,
+        })
+    }
+
 
     return (
         <div className={styles.container}>
@@ -21,23 +60,24 @@ const register = () => {
                         className={styles.input}
                         type="text"
                         placeholder="Логин"
+                        onChange={setLoginValue}
                     />
                     <input
                         className={styles.input}
-                        type="text"
-                        placeholder="Пароль"
+                        type="e-mail"
+                        placeholder="E-mail"
+                        onChange={setEmailValue}
                     />
                     <input
                         className={styles.input}
-                        type="text"
-                        placeholder="Повторите пароль"
+                        type="password"
+                        placeholder="Введите пароль"
+                        onChange={setPasswordValue}
                     />
                 </div>
-                <Link to="/main">
-                    <button onClick={login} className={styles.button}>
-                        Зарегистрироваться
-                    </button>
-                </Link>
+                <button onClick={() => register()} className={styles.button}>
+                    Зарегистрироваться
+                </button>
             </div>
         </div>
     );

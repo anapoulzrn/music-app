@@ -35,6 +35,12 @@
         -ms-flex-direction: column;
             flex-direction: column;
     overflow-y: auto;
+    height: 404px;
+  }
+
+  .content__playlist::-webkit-scrollbar {
+    display: none;
+    visibility: hidden;
   }
   
   .title__col {

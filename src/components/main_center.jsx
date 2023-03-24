@@ -1,21 +1,20 @@
+/* eslint-disable no-unused-vars */
 import React, { useContext } from 'react';
 import { useState } from 'react';
 import Content from './content';
 import styles from "../css/main_center.module.css";
 import classNames from 'classnames';
 import { ThemeContext } from '../context/ThemeContext';
-
+import { useGetAllTracksQuery } from '../redux/musicApi';
+import { useDispatch, useSelector } from 'react-redux';
+// import { addFilterByGenre, getGenres } from '../redux/slices/filterSlice';
+import {  addFilterByAuthor, addFilterByGenre, deleteGenres, getGenres } from '../redux/slices/filterSlice';
+import filterByYear from '../redux/utils/filterByYear';
 
 
 const main_center = () => {
 
-  const artists = ["Linkin Park", "Stray Kids", "Arctic Monkeys", "twenty one pilots", "Michael Jackson", "Nirvana", "Sting", "Adele", "Grimes"]
-  
-  const  genres = ["Rock","Pop", "K-Pop", "Classic", "Hip-Hop", "RNB", "Electronic", "Country", "Jazz", "Folk"]
-
-
 const [active, setActive] = useState('');
-
 const [filterClass, setFilterClass] = useState(`${styles.filter__hidden}`);
 
 
@@ -30,6 +29,42 @@ function checkActive(option) {
 }
 
 const theme = useContext(ThemeContext);
+const { data } = useGetAllTracksQuery('');
+
+const dispatch = useDispatch();
+
+
+const genresRaw = [];
+data?.map(({genre}) => genresRaw.push(genre));
+const genres = [... new Set(genresRaw)]
+dispatch(getGenres(genres))
+
+
+const authorsRaw = [];
+data?.map(({author}) => authorsRaw.push(author));
+const authors = [... new Set(authorsRaw)]
+
+const setAuthorFilter = (e) => {
+
+    if (authors) {
+        console.log(e.target.value)  
+    }
+
+}
+
+const setGenresFilter = (e) => {
+    if (genres) {
+        console.log(e.target.value)     
+    }
+}
+
+const setYearFilter = (e) => {
+    if (authors) {
+        dispatch(filterByYear (e.target.value))
+        console.log(e.target)
+    }
+}
+
 
   return (
     <div className={classNames(styles.main__centerblock, styles.centerblock)}>
@@ -54,7 +89,7 @@ const theme = useContext(ThemeContext);
                 исполнителю
                 {active === 'artist' ? <div className={filterClass}>
                     <ul className={styles.scroll_items}>
-                        {artists.map(artist => <li key={artist}>{artist}</li>)}
+                        {authors?.map((author) => <li onClick={setAuthorFilter} value={author} key={author}>{author}</li>)}
                     </ul>
                 </div> : null}
 
@@ -64,12 +99,16 @@ const theme = useContext(ThemeContext);
                 {active === 'year' ?
                     <div className={active === 'year' ? styles.years : styles.filter__hidden}>
                             <div className={styles.year_block}>
-                                <input className={styles.input_year1} id="radio1" name='radio' type="radio" />
                                 <label className={styles.radio_label} htmlFor="radio1"></label>
+                                <input onClick={setYearFilter} 
+                                    className={styles.input_year} value='Более старые'
+                                    id="radio1" name='radio' type="radio" />
                                 <label className={styles.radio_label_text} htmlFor="radio1">Более старые</label>
 
-                                <input className={styles.input_year2}  id='radio2' name='radio' type="radio" />
                                 <label className={styles.radio_label} htmlFor="radio2"></label>
+                                <input onClick={setYearFilter} 
+                                    className={styles.input_year}  value='Более новые' 
+                                    id='radio2' name='radio' type="radio" checked />
                                 <label className={styles.radio_label_text} htmlFor="radio2">Более новые</label>
                             </div>
                     </div> : null }
@@ -79,7 +118,7 @@ const theme = useContext(ThemeContext);
                 жанру
                 {active === 'genre' ? <div className={filterClass}>
                     <ul className={styles.scroll_items}>
-                        {genres.map(genre => <li key={genre}>{genre}</li>)}
+                        {genres?.map((genre) => <li onClick={setGenresFilter} value={genre} key={genre}>{genre}</li>)}
                     </ul>
                 </div> : null}
 
