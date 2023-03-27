@@ -8,10 +8,30 @@ import Playlist03 from './img/playlist03.png';
 import classNames from 'classnames';
 import styles from "../css/main_sidebar.module.css";
 import { NavLink } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { getPlaylistId, getPlaylistName } from '../redux/slices/playlistSlice';
+
 
 
 
 const main_sidebar = () => {
+
+    const dispatch = useDispatch();
+
+    function setPlaylist1() {
+        dispatch(getPlaylistId(1))
+        dispatch(getPlaylistName('Плейлист дня'))
+    }
+
+    function setPlaylist2 (){
+        dispatch(getPlaylistId(2))
+        dispatch(getPlaylistName('100 танцевальных хитов'))
+    }
+
+    function setPlaylist3() {
+        dispatch(getPlaylistId(3))
+        dispatch(getPlaylistName('Инди-заряд'))
+    }
 
     const [loading, setLoading] = useState(true);
 
@@ -32,17 +52,17 @@ const main_sidebar = () => {
         <div className={styles.block}>
         {loading ? <Skeleton count={3} width={200} height={120} style={{marginRight: "115px", marginBottom: "22px"}} /> :
             <div className={styles.list}>
-                <NavLink to={'/playlist/day_mix'} className={styles.item}>
+                <NavLink to={'/playlist/day_mix'} onClick={setPlaylist1} value={'Плейлист дня'} id={1} className={styles.item}>
                     <div className={styles.link}>
                         <img className={styles.img} src={Playlist01} alt="day's playlist"></img>
                     </div>
                 </NavLink>
-                <NavLink to={'/playlist/dance_mix'} className={styles.item}>
+                <NavLink to={'/playlist/dance_mix'} onClick={setPlaylist2} value={'100 танцевальных хитов'} id={2} className={styles.item}>
                     <div className={styles.link}>
                         <img className={styles.img} src={Playlist02} alt="100 hits"></img>
                     </div>
                 </NavLink>
-                <NavLink to={'/playlist/indie_mix'} className={styles.item}>
+                <NavLink to={'/playlist/indie_mix'} onClick={setPlaylist3} value={'Инди-заряд'} id={3} className={styles.item}>
                     <div className={styles.link} >
                         <img className={styles.img} src={Playlist03} alt="indie mix"></img>
                     </div>

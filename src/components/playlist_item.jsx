@@ -4,14 +4,16 @@ import { useEffect, useState } from 'react';
 import 'react-loading-skeleton/dist/skeleton.css';
 import Note from './img/icon/note.svg';
 import Like from './img/icon/like.svg';
-// eslint-disable-next-line no-undef
-let classNames = require('classnames');
+import classNames from 'classnames';
 import styles from "../css/playlist_item.module.css";
+import { getCurrentTrack, getTrackId, play } from '../redux/slices/playerSlice';
+import { useDispatch } from 'react-redux';
+// import { useSelector } from 'react-redux';
 
 
-const playlist_item = (props) => {
-
+const playlist_item = ({ id, trackAuthor, trackName, trackAlbum, trackDuration, trackTitleLink}) => {
     const [loading, setLoading] = useState(true);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -20,31 +22,33 @@ const playlist_item = (props) => {
         return () => clearTimeout(timer)
     }, []);
 
+    function setCurrentTrack() {
+        dispatch(getTrackId(id))
+        dispatch(getCurrentTrack(trackTitleLink))
+        dispatch(play(true))
+    }
   return (
     
     <div className={styles.playlist__item}>
         <div className={classNames(styles.playlist__track, styles.track)}>
-            <div className={styles.track__title}>
+            <div className={styles.track__title} onDoubleClick={setCurrentTrack} id={id} value={trackTitleLink}>
                 { loading ? <Skeleton width={50} height={50} style={{marginRight: "25px"}} /> : 
                 <div className={styles.track_image}>
                     <img className={styles.dislike_svg} src={!loading && Note} alt="note"></img>
                 </div>}
                 <div className={styles.title_text}>
-                    <a className={styles.title_link} href="http://">{loading ? <Skeleton width={270}/> : props.track.title} </a>
+                    {loading ? <Skeleton width={270}/> : <a className={styles.title_link} id={id} > {trackName} </a>}
                 </div>
             </div>
             <div className={styles.author}>
-                <a className={styles.author_link} href="http://">{loading ? <Skeleton width={240}/> : props.track.artist}</a>
-
+                {loading ? <Skeleton width={240}/> : <a className={styles.author_link} href="http://"> {trackAuthor}</a>}
             </div>
             <div className={styles.album}>
-                <a className={styles.album_link} href="http://">{loading ? <Skeleton width={180}/> : props.track.album}</a>
-
+                {loading ? <Skeleton width={180}/> : <a className={styles.album_link} href="http://">{trackAlbum}</a>}
             </div>
             <div className={styles.time}>
                 {!loading && <img className={styles.time_svg} src={Like} alt="time"></img>}
-                <span className={styles.time_text}>{loading ? <Skeleton width={35}/> : props.track.duration}</span>
-
+                {loading ? <Skeleton width={35}/> : <span className={styles.time_text}>{trackDuration}</span>}
             </div>
         </div>
     </div>

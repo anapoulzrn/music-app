@@ -29,7 +29,7 @@ const main = () => {
       <div className={styles.bar}>
         <div className={styles.content}>
           <div className={styles.player_block}>
-            <Player artist="Linkin Park" song="Breaking The Habit" />
+            <Player/>
             <Volume/>
           </div>
           

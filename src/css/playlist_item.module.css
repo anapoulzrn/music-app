@@ -3,6 +3,11 @@
     display: block;
     margin-bottom: 12px;
   }
+
+  .playlist__item:hover {
+    background-color: var(--bar-bg-default);
+    cursor: pointer;
+  }
   
   .playlist__track {
     display: -webkit-box;

@@ -1,36 +1,41 @@
-import React, { useContext } from 'react';
+import React, { useState } from 'react';
 import '../css/style.css';
 import styles from '../css/login.module.css';
 import Logo from '../components/img/logo_black.png';
-import { Link } from 'react-router-dom';
-import { AuthContext } from '../context/authContext';
+import { Link  } from 'react-router-dom';
+import LoginButton from '../components/loginButton';
 
 
 
 const login = () => {
 
-  const { setAuth } = useContext(AuthContext);
-  const login = (event) => {
-    event.preventDefault();
-    setAuth(true);
-    localStorage.setItem('auth', 'true')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+
+  const setLoginValue = ({ target }) => {
+    setEmail(target.value)
   }
 
+  const setPasswordValue = ({ target }) => {
+      setPassword(target.value)
+  }
 
     return (
       <div className={styles.container}>
         <div className={styles.form}>
           <img className={styles.image} src={Logo} alt="logo"></img>
             <div className={styles.inputs}>
-              <input className={styles.input} type="text" placeholder="Логин"/>
-              <input className={styles.input} type="text" placeholder="Пароль"/>
+              <input className={styles.input} onChange={setLoginValue} type="text" placeholder="Почта"/>
+              <input className={styles.input} onChange={setPasswordValue} type="password" placeholder="Пароль"/>
             </div>
             <div className={styles.buttons}>
                 <div>
-                  <button onClick={login} className={styles.button1}>Войти</button>
+                  <LoginButton email={email} password={password}/>
+
                 </div>
                 <Link to="/register">
-                  <button className={styles.button2}>  Зарегистрироваться</button>
+                  <button className={styles.button2}>Зарегистрироваться</button>
                 </Link>
             </div>
         </div>

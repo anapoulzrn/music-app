@@ -1,25 +1,32 @@
 import React from "react";
 import '../css/style.css';
-import styles from "../css/playlist.module.css";
+import styles from "../css/sidePlaylists.module.css";
 import Main_nav from '../components/main_nav';
 import Player from '../components/player';
 import Volume from '../components/volume';
-import Content from "../components/content";
+import Watch from '../components/img/icon/watch.svg';
+import Playlist_item from '../components/playlist_item';
 import classNames from "classnames";
 import { SkeletonTheme } from 'react-loading-skeleton';
-import { useParams } from "react-router-dom";
-import { playlists } from "../constants";
 import { useContext } from "react";
 import { ThemeContext } from "../context/ThemeContext";
+import formatDuration from "../redux/utils/formatDuration";
+import { useGetPlaylistByIdQuery } from "../redux/musicApi";
+import { useSelector } from "react-redux";
 
 
-const playlist = () => {
+const sidePlaylist = () => {
 
-    const params = useParams();
-    const playlist = playlists.find((playlist) => playlist.id === params.id);
     const theme = useContext(ThemeContext);
+    const playlistId = useSelector((state) => state.playlist.id)
+    const playlistName = useSelector((state) => state.playlist.name)
+    const { data , isSuccess } = useGetPlaylistByIdQuery(playlistId);
+
+    console.log(playlistId)
+    console.log(playlistName)
 
 
+if (isSuccess) {
   return (
     <div className={classNames(styles.app, styles.container)}>
         <SkeletonTheme baseColor={ theme.theme ==='light' ? '#D9D9D9' : '#202020'} 
@@ -44,8 +51,35 @@ const playlist = () => {
                     name="search"
                 ></input>
             </div>
-            <h2 className={styles.h2}>{playlist.title}</h2>
-            <Content/>
+            <h2 className={styles.h2}>{playlistName}</h2>
+            
+            <div className={styles.content}>
+        <div className={classNames(styles.title, styles.playlist_title)}>
+            <div className={classNames(styles.title__col, styles.col01)}>Трек</div>
+            <div className={classNames(styles.title__col, styles.col02)}>ИСПОЛНИТЕЛЬ</div>
+            <div className={classNames(styles.title__col, styles.col03)}>АЛЬБОМ</div>
+            <div className={classNames(styles.title__col, styles.col04)}>
+                <img src={Watch} className={styles.title__svg} alt="time"></img>
+            </div>
+        </div>
+        <div className={classNames(styles.content__playlist, styles.playlist)}>
+          {data.items?.map(
+              ({id, name, author, album, track_file, duration_in_seconds}) => (
+                <Playlist_item
+                    key={id}
+                    id={id}
+                    trackTitleLink={track_file}
+                    trackName={name}
+                    trackAuthor={author}
+                    trackAlbum={album}
+                    trackDuration={formatDuration(duration_in_seconds)}
+                />
+              )
+            )}
+
+        </div>
+    </div>
+
         </div>
         </div>
         <div className={styles.bar}>
@@ -61,6 +95,6 @@ const playlist = () => {
         </SkeletonTheme>
   </div>
   )
-}
+}}
 
-export default playlist;
+export default sidePlaylist;
