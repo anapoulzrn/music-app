@@ -23,7 +23,7 @@ const filterSlice = createSlice({
             state.authors = state.authors.concat(action.payload)
         },
 
-        filterByYear: (state, action) => {
+        addFilterByYear: (state, action) => {
             state.filterYearValue = action.payload
             state.filteredByYear = action.payload !== 'default'
         },
@@ -33,10 +33,8 @@ const filterSlice = createSlice({
             state.filteredByGenre = true
         },
 
-        deleteGenres: (state, action) => {
-            state.filterGenresValue = state.filterGenresValue.filter(
-                (genre) => genre !== action.payload
-            )
+        deleteGenres: (state) => {
+            state.filterGenresValue.splice(0, state.filterGenresValue.length);
             if (!state.filterGenresValue.length) {
                 state.filteredByGenre = false
             }
@@ -47,10 +45,8 @@ const filterSlice = createSlice({
             state.filteredByAuthor = true
         },
 
-        deleteAuthors: (state, action) => {
-            state.filterAuthorsValue = state.filterAuthorsValue.filter(
-                (author) => author !== action.payload
-            )
+        deleteAuthors: (state) => {
+            state.filterAuthorsValue.splice(0, state.filterAuthorsValue.length);
             if (!state.filterAuthorsValue.length) {
                 state.filteredByAuthor = false
             }
@@ -59,7 +55,7 @@ const filterSlice = createSlice({
 })
 
 export const {
-    filterByYear,
+    addFilterByYear,
     getGenres,
     getAuthors,
     deleteGenres,
