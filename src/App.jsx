@@ -4,7 +4,6 @@ import { AuthContext } from './context/authContext';
 import ThemeProvider from './provider/ThemeProvider';
 
 function App() {
-
     const [auth, setAuth] = useState(false);
     const [loading, setLoading] = useState(true);
 
@@ -22,10 +21,10 @@ function App() {
                 setAuth,
                 loading,
             }}
-        > 
-                <ThemeProvider>
-                    <AppRoutes />
-                </ThemeProvider>
+        >
+            <ThemeProvider>
+                <AppRoutes />
+            </ThemeProvider>
         </AuthContext.Provider>
     );
 }

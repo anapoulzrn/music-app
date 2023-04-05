@@ -61,7 +61,6 @@ const setYearFilter = (e) => {
     dispatch(deleteGenres())
     dispatch(deleteAuthors())
     dispatch(addFilterByYear(e.target.value))
-    console.log(e.target)
 }
 
 
