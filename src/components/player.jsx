@@ -103,9 +103,14 @@ const player = () => {
     const [addTrack, { isError, error }] = useAddFavoriteTrackMutation()
     const [deleteTrack, { isError: isDeleteError, error: deleteError }] = useDeleteFavoriteTrackMutation()
 
+    const tokenValue = useSelector((state) => state.user.token);
+
+
 
     const addFavorite = () => {
         addTrack(trackId)
+        console.log(tokenValue)
+
     }
 
     const deleteFavorite= () => {

@@ -14,24 +14,33 @@ const { setAuth } = useContext(AuthContext)
 const dispatch = useDispatch();
 const navigate = useNavigate();
 
-const [login, { data, isSuccess, isLoading }] = useUserLoginMutation()
-const [getToken, { data: token, error: tokenError }] = useGetTokenMutation()
+const [login, { isLoading }] = useUserLoginMutation()
+const [getToken, {isSuccess, error: tokenError }] = useGetTokenMutation()
 
-  const loginHandler = (e) => {
+ const loginHandler = async (e) => {
         e.preventDefault()
         if (!email || !password) {
             alert('Введите свои учетные данные или зарегистрируйтесь')
         } else {
-            login({
+
+           const resultLogin = await login({
                 email,
                 password,
             })
-            getToken({
+            const resultGetToken = await getToken({
                 email,
                 password,
             })
+
+            // console.log(resultGetToken, resultLogin)
+
+            document.cookie = `username=${resultLogin.data.username}`
+            dispatch(setToken(resultGetToken.data.access))
+            document.cookie = `token=${resultGetToken.data.refresh}`
+            dispatch(setLogin())
         }
     }
+
 
     if (isLoading) {
         console.log('loading')
@@ -46,13 +55,10 @@ const [getToken, { data: token, error: tokenError }] = useGetTokenMutation()
             setAuth(true);
             localStorage.setItem('auth', 'true');
             navigate('/main')
-            document.cookie = `username=${data?.username}`
-            dispatch(setToken (token?.access))
-            document.cookie = `token=${token?.refresh}`
-            dispatch(setLogin())
         }
-    }, [token])
+    }, [isSuccess])
 
+    
 
   return (
     <button className={styles.button1} onClick={loginHandler}>Войти</button>

@@ -40,7 +40,7 @@ export const musicApi = createApi({
 
         getFavoriteTracks: build.query({
             query: () => ({
-                url: '/catalog/track/favourite/all/',
+                url: '/catalog/track/favorite/all/',
             }),
             providesTags: ['Tracks'],
         }),
