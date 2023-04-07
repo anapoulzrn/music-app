@@ -35,7 +35,8 @@
         -ms-flex-direction: column;
             flex-direction: column;
     overflow-y: auto;
-    height: 404px;
+    /* height: 404px; */
+    height: 450px;
   }
 
   .content__playlist::-webkit-scrollbar {
