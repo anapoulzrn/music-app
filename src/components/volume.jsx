@@ -1,13 +1,22 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import Volume from './img/icon/volume.svg';
 import styles from '../css/volume.module.css';
 import classNames from 'classnames';
 import { ThemeContext } from '../context/ThemeContext';
+import { useDispatch } from 'react-redux';
+import { setVolume } from '../redux/slices/playerSlice';
 
 
 const volume = () => {
 
 const theme = useContext(ThemeContext);
+const dispatch = useDispatch();
+const [volumeValue, setVolumeValue] = useState(0.2)
+
+const volumeHandler = (e) => {
+  setVolumeValue(Number(e.target.value))
+  dispatch(setVolume(e.target.value))
+}
 
   return (
     <div className={classNames(styles.block, styles.btn)}>
@@ -25,7 +34,15 @@ const theme = useContext(ThemeContext);
 
             </div>
             <div className={classNames(styles.progress, styles.btn)}>
-                <input className={classNames(styles.progress_line, styles.btn)} type="range" name="range"></input>
+                <input className={classNames(styles.progress_line, styles.btn)} 
+                type="range" 
+                name="range"
+                min="0"
+                max="1"
+                step="0.05" 
+                value={volumeValue}
+                onChange={volumeHandler}>
+                </input>
             </div>
             
        </div>

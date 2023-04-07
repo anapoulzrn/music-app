@@ -214,10 +214,22 @@
 
   .player_progress {
     height: 5px;
-    background: #472357;
+    background: var(--player-progress-bg-default);
     position: absolute;
     bottom: 72px;
     cursor: pointer;
+    width: 100%;
+    -webkit-appearance: none;
+
+  }
+  
+
+  .player_progress::-webkit-slider-thumb {
+    visibility: hidden;
+  }
+
+  .player_progress::-webkit-slider-runnable-track {
+    -webkit-appearance: none;
   }
 
   .progress_back {
@@ -227,6 +239,16 @@
     position: absolute;
     bottom: 72px;
     cursor: pointer;
+  }
+
+  .progress_line {
+    /* width: 100%; */
+    height: 4px;
+    background: #754c8d;
+    position: absolute;
+    bottom: 72px;
+    cursor: pointer;
+    z-index: 1;
   }
 
   .btn_text:hover {

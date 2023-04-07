@@ -2,7 +2,8 @@
     width: 244px;
     background-color: var(--bar-bg-default);
     padding: 20px 0 20px 36px;
-    height: 684px;
+    /* height: 684px; */
+    height: 756px;
 }
 
 .logo {

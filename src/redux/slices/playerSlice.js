@@ -6,10 +6,13 @@ const playerSlice = createSlice({
         showPlayer: false,
         isPlaying: false,
         currentTrackLink: '',
+        isCurrentTrackLiked: false,
         id: 32,
         ids: [],
         isShuffle: false,
         isRepeat: false,
+        volume: 0.3,
+        time: 0
     },
     reducers: {
         play: (state, action) => {
@@ -60,10 +63,20 @@ const playerSlice = createSlice({
         repeatTrack: (state) => {
             state.isRepeat = !state.isRepeat
         },
+
+        setVolume: (state, action) => {
+            state.volume = action.payload
+        },
+
+        setTime: (state, action) => {
+            state.time = action.payload
+        },
     },
 })
 
 export const {
+    setVolume,
+    setTime,
     play,
     getCurrentTrack,
     getTrackId,

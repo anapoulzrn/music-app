@@ -10,12 +10,15 @@ import 'react-loading-skeleton/dist/skeleton.css';
 import classNames from 'classnames';
 import styles from "../css/app.module.css";
 import { ThemeContext } from '../context/ThemeContext';
+import { useSelector } from 'react-redux';
 
 
 
 const main = () => {
 
   const theme = useContext(ThemeContext);
+  
+  const isPlayerOpen = useSelector((state) => state.player.showPlayer)
 
   return (
     <div className={classNames(styles.app, styles.container)}>
@@ -28,11 +31,10 @@ const main = () => {
       </div>
       <div className={styles.bar}>
         <div className={styles.content}>
-          <div className={styles.player_block}>
+          { isPlayerOpen ? <div className={styles.player_block}>
             <Player/>
             <Volume/>
-          </div>
-          
+          </div>  : null }
         </div>
       </div> 
       <footer className={styles.footer}></footer>
