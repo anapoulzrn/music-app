@@ -191,6 +191,10 @@
   .dislike_svg_active {
     fill: #696969;
   }
+
+  .liked {
+    fill: #696969;
+  }
   
   .dislike {
     margin-left: 28.5px;

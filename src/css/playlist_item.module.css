@@ -110,13 +110,35 @@
     color: #696969;
   }
   
-  .time_svg {
+  .like_svg {
     width: 14px;
     height: 12px;
     margin-right: 17px;
     fill: transparent;
+    z-index: 1;
     stroke: #696969;
   }
+
+  .like_svg:hover {
+    fill: #696969;
+   /* stroke: #696969; */
+   stroke: #FFFFFF;
+
+ }
+
+ .like_svg:active {
+   fill: #696969;
+    stroke: #FFFFFF;
+    cursor: pointer;
+ }
+
+ .liked {
+  width: 14px;
+  height: 12px;
+  margin-right: 17px;
+   fill: #696969;
+ }
+ 
   
   .time {
     display: flex;
