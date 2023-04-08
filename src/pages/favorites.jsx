@@ -12,13 +12,10 @@ import { useContext } from 'react';
 import { ThemeContext } from '../context/ThemeContext';
 import formatDuration from '../utils/formatDuration';
 import { useGetFavoriteTracksQuery } from '../redux/musicApi';
-// import { useSelector } from "react-redux";
 
 const favorites = () => {
     const theme = useContext(ThemeContext);
     const { data, isLoading } = useGetFavoriteTracksQuery('');
-
-    // console.log(data)
 
     if (!isLoading) {
         return (
@@ -43,12 +40,12 @@ const favorites = () => {
                             >
                                 {theme.theme === 'dark' ? (
                                     <svg
-                                        className={styles.search__svg}
-                                        width="14"
-                                        height="16"
-                                        viewBox="0 0 14 16"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
+                                    className={styles.search__svg}
+                                    width="14"
+                                    height="16"
+                                    viewBox="0 0 14 16"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
                                     >
                                         <path
                                             d="M9.67139 10.7749L13.1137 15.0645"

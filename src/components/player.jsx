@@ -10,6 +10,7 @@ import Pause from './img/icon/pause.png';
 import Next from './img/icon/next.svg';
 import classNames from 'classnames';
 import styles from '../css/player.module.css';
+import LikeButtons from './likeButtons';
 import {
     useAddFavoriteTrackMutation,
     useDeleteFavoriteTrackMutation,
@@ -32,10 +33,7 @@ const player = () => {
     const dispatch = useDispatch();
     const trackId = useSelector((state) => state.player.id);
     const trackIds = useSelector((state) => state.player.ids);
-
     const isPlaying = useSelector((state) => state.player.isPlaying)
-
-
     const isShuffle = useSelector((state) => state.player.isShuffle);
     const isRepeat = useSelector((state) => state.player.isRepeat);
     const volumeValue = useSelector((state) => state.player.volume);
@@ -117,27 +115,6 @@ const player = () => {
             dispatch(shuffleTracks());
         }
     };
-
-    const [addTrack, { isError, error }] = useAddFavoriteTrackMutation();
-    const [deleteTrack, { isError: isDeleteError, error: deleteError }] =
-        useDeleteFavoriteTrackMutation();
-
-    const addFavorite = () => {
-        addTrack(trackId);
-    };
-
-    const deleteFavorite = () => {
-        deleteTrack(trackId);
-    };
-
-    if (isError) {
-        console.log(error);
-    }
-
-    if (isDeleteError) {
-        console.log(deleteError);
-    }
-
     const onPlaying = () => {
         const duration = audioRef.current.duration;
         const currentTime = audioRef.current.currentTime;
@@ -171,12 +148,8 @@ const player = () => {
 
     return (
         <div className={classNames(styles.bar__player, styles.player)}>
-            <div
-                className={styles.progress_line}
-                style={{ width: `${currentSong.progress + '%'}` }}
-            ></div>
+            <div className={styles.progress_line} style={{ width: `${currentSong.progress + '%'}` }}></div>
             <div className={styles.progress_back}></div>
-
             <input
                 className={styles.player_progress}
                 type="range"
@@ -189,37 +162,16 @@ const player = () => {
             ></input>
             <div className={styles.controls}>
                 <div onClick={prevTrack} className={styles.btn_prev}>
-                    <img
-                        src={Prev}
-                        className={styles.prev_svg}
-                        alt="prev"
-                    ></img>
+                    <img src={Prev} className={styles.prev_svg} alt="prev"></img>
                 </div>
-                <div
-                    onClick={togglePlay}
-                    className={classNames(styles.btn_play, styles.btn)}
-                >
-                    <audio
-                        src={trackSrc}
-                        ref={audioRef}
-                        onTimeUpdate={onPlaying}
-                    />
-                    <img
-                        src={isPlaying ? Pause : Play}
-                        className={styles.play__svg}
-                        alt="play"
-                    ></img>
+                <div onClick={togglePlay} className={classNames(styles.btn_play, styles.btn)}>
+                    <audio src={trackSrc} ref={audioRef} onTimeUpdate={onPlaying}/>
+                    <img src={isPlaying ? Pause : Play} className={styles.play__svg} alt="play"></img>
                 </div>
                 <div onClick={nextTrack} className={styles.btn_next}>
-                    <img
-                        src={Next}
-                        className={styles.next_svg}
-                        alt="next"
-                    ></img>
+                    <img src={Next} className={styles.next_svg} alt="next" ></img>
                 </div>
-                <div
-                    onClick={repeatSong}
-                    className={classNames(styles.btn_repeat, styles.btn_icon)}
+                <div onClick={repeatSong} className={classNames(styles.btn_repeat, styles.btn_icon)}
                 >
                     {isRepeat ? (
                         <svg
@@ -306,18 +258,10 @@ const player = () => {
             <div className={styles.track_play}>
                 <div className={styles.contain}>
                     {loading ? (
-                        <Skeleton
-                            width={50}
-                            height={50}
-                            style={{ marginRight: '15px' }}
-                        />
+                        <Skeleton width={50} height={50} style={{ marginRight: '15px' }}/>
                     ) : (
                         <div className={styles.image}>
-                            <img
-                                className={styles.title_svg}
-                                src={Note}
-                                alt="music"
-                            ></img>
+                            <img className={styles.title_svg} src={Note} alt="music"></img>
                         </div>
                     )}
                     {loading ? (
@@ -325,61 +269,16 @@ const player = () => {
                     ) : (
                         <div>
                             <div className={styles.author}>
-                                <a
-                                    className={styles.author_link}
-                                    href="http://"
-                                >
-                                    {data.name}
-                                </a>
+                                <a className={styles.author_link} href="http://"> {data.name}</a>
                             </div>
                             <div className={styles.album}>
-                                <a className={styles.album_link} href="http://">
-                                    {data.author}
-                                </a>
+                                <a className={styles.album_link} href="http://">{data.author}</a>
                             </div>
                         </div>
                     )}
                 </div>
 
-                <div className={styles.like_dis}>
-                    <div
-                        onClick={addFavorite}
-                        className={classNames(styles.like, styles.btn_icon)}
-                    >
-                        <svg
-                            className={styles.dislike_svg}
-                            width="16"
-                            height="14"
-                            viewBox="0 0 16 14"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-                            <path
-                                d="M7.99997 2.25572H8.02154C8.95343 1.44175 11.4125 0.165765 13.6127 1.76734C16.9673 4.20921 13.902 9.5 8.02154 13H7.99997M8.00003 2.25572H7.97846C7.04657 1.44175 4.58746 0.165765 2.38727 1.76734C-0.967302 4.20921 2.09797 9.5 7.97846 13H8.00003"
-                                stroke="#696969"
-                            />
-                        </svg>
-                    </div>
-                    <div
-                        onClick={deleteFavorite}
-                        className={classNames(styles.dislike, styles.btn_icon)}
-                    >
-                        <svg
-                            className={styles.dislike_svg}
-                            width="16"
-                            height="15"
-                            viewBox="0 0 16 15"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-                            <path d="M1 1L15 13.5" stroke="#696969" />
-                            <path
-                                d="M8.34372 3.25572H8.36529C9.29718 2.44175 11.7563 1.16576 13.9565 2.76734C17.3111 5.20921 14.2458 10.5 8.36529 14H8.34372M8.34378 3.25572H8.32221C7.39032 2.44175 4.93121 1.16576 2.73102 2.76734C-0.623552 5.20921 2.44172 10.5 8.32221 14H8.34378"
-                                stroke="#696969"
-                            />
-                        </svg>
-                    </div>
-                </div>
+                <LikeButtons id={trackId} ></LikeButtons>
             </div>
         </div>
     );
